@@ -1,24 +1,24 @@
 <div class="app-shell">
-  <header class="app-header">
-    <div>
-      <p class="app-kicker">Shared home</p>
-      <h1>OurLife</h1>
-    </div>
-    <span class="status-dot" aria-label="Offline-first app"></span>
-  </header>
+    <header class="app-header">
+        <div>
+            <p class="app-kicker">Shared home</p>
+            <h1>OurLife</h1>
+        </div>
+        <span class="status-dot" aria-label="Offline-first app"></span>
+    </header>
 
-  <main class="page-content">
-    <router-outlet></router-outlet>
-  </main>
+    <main class="page-content">
+        <router-outlet></router-outlet>
+    </main>
 
-  <nav class="bottom-nav" aria-label="Main navigation">
-    <a routerLink="/todo" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-      <span aria-hidden="true">&#10003;</span>
-      <span>To-Do</span>
-    </a>
-    <a routerLink="/to-buy" routerLinkActive="active">
-      <span aria-hidden="true">+</span>
-      <span>To-Buy</span>
-    </a>
-  </nav>
+    <nav class="bottom-nav" aria-label="Main navigation">
+        <a routerLink="/todo" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <span aria-hidden="true">&#10003;</span>
+            <span>To-Do</span>
+        </a>
+        <a routerLink="/to-buy" routerLinkActive="active">
+            <span aria-hidden="true">+</span>
+            <span>To-Buy</span>
+        </a>
+    </nav>
 </div>

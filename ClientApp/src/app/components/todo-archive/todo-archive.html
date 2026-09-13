@@ -1,22 +1,22 @@
 <section class="archive" aria-labelledby="done-heading">
-  <div class="section-heading">
-    <div>
-      <p class="section-label">A quiet record</p>
-      <h2 id="done-heading">Done</h2>
+    <div class="section-heading">
+        <div>
+            <p class="section-label">A quiet record</p>
+            <h2 id="done-heading">Done</h2>
+        </div>
+        <span class="count">{{ todos().length }}</span>
     </div>
-    <span class="count">{{ todos().length }}</span>
-  </div>
 
-  @if (todos().length) {
+    @if (todos().length) {
     <ul class="archive-list">
-      @for (todo of todos().slice(0, visibleCount()); track todo.id) {
+        @for (todo of todos().slice(0, visibleCount()); track todo.id) {
         <li><span>{{ todo.title }}</span><time>{{ formatDate(todo.completedAt!) }}</time></li>
-      }
+        }
     </ul>
-    @if (visibleCount() < todos().length) {
-      <button class="load-more" type="button" (click)="loadMore.emit()">Load more</button>
-    }
-  } @else {
-    <p class="archive-empty">Completed tasks settle here after a day.</p>
-  }
+    @if (visibleCount() < todos().length) { <button class="load-more" type="button" (click)="loadMore.emit()">Load
+        more</button>
+        }
+        } @else {
+        <p class="archive-empty">Completed tasks settle here after a day.</p>
+        }
 </section>

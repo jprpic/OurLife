@@ -1,15 +1,17 @@
 <section class="page-shell">
-  <div class="intro">
-    <p class="eyebrow">Make room for living</p>
-    <h2>What needs doing?</h2>
-    <p class="subcopy">A small shared list for the things that keep your home moving.</p>
-  </div>
+    <div class="intro">
+        <p class="eyebrow">Make room for living</p>
+        <h2>What needs doing?</h2>
+        <p class="subcopy">A small shared list for the things that keep your home moving.</p>
+    </div>
 
-  <form class="quick-add" (submit)="$event.preventDefault(); addTodo()">
-    <input #taskInput type="text" [value]="draft()" (input)="updateDraft(taskInput.value)" placeholder="Add something to the list..." aria-label="New task" autocomplete="off" />
-    <button type="submit" aria-label="Add task">+</button>
-  </form>
+    <form class="quick-add" (submit)="$event.preventDefault(); addTodo()">
+        <input #taskInput type="text" [value]="draft()" (input)="updateDraft(taskInput.value)"
+            placeholder="Add something to the list..." aria-label="New task" autocomplete="off" />
+        <button type="submit" aria-label="Add task">+</button>
+    </form>
 
-  <app-todo-list [todos]="activeTodos()" (todoToggled)="toggleTodo($event)"></app-todo-list>
-  <app-todo-archive [todos]="archivedTodos()" [visibleCount]="archivePageSize()" (loadMore)="loadMore()"></app-todo-archive>
+    <app-todo-list [todos]="activeTodos()" (todoToggled)="toggleTodo($event)"></app-todo-list>
+    <app-todo-archive [todos]="archivedTodos()" [visibleCount]="archivePageSize()"
+        (loadMore)="loadMore()"></app-todo-archive>
 </section>
