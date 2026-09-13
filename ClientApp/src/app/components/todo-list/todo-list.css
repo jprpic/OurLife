@@ -1,0 +1,14 @@
+:host { display: block; }
+.section-heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 14px; }
+.section-label { margin: 0 0 4px; color: var(--accent); font: 700 .7rem/1.2 Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+h2 { margin: 0; font-size: 2rem; letter-spacing: -.04em; }
+.count { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 50%; color: var(--accent-dark); background: #f6d8ce; font: 700 .8rem Arial, sans-serif; }
+.todo-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.todo-row { display: flex; min-height: 58px; align-items: center; gap: 14px; padding: 0 16px; border: 1px solid #dfe6dd; border-radius: 13px; background: var(--surface); font-size: 1.08rem; box-shadow: 0 5px 14px #17211b08; }
+.todo-toggle { display: grid; width: 23px; height: 23px; flex: 0 0 23px; place-items: center; border: 2px solid #9aa99d; border-radius: 50%; color: #fff; background: transparent; cursor: pointer; }
+.todo-toggle:focus-visible { outline: 3px solid #d95d3966; outline-offset: 2px; }
+.is-complete { color: #718078; text-decoration: line-through; }
+.is-complete .todo-toggle { border-color: var(--accent); background: var(--accent); }
+.empty-state { padding: 42px 20px; text-align: center; border: 1px dashed #cbd6cc; border-radius: 15px; color: var(--muted); }
+.empty-state p { margin: 10px 0 0; line-height: 1.5; }
+.empty-mark { color: var(--accent); font-size: 1.5rem; }

@@ -1,0 +1,27 @@
+<section aria-labelledby="active-heading">
+  <div class="section-heading">
+    <div>
+      <p class="section-label">Today</p>
+      <h2 id="active-heading">On the list</h2>
+    </div>
+    <span class="count">{{ todos().length }}</span>
+  </div>
+
+  @if (todos().length) {
+    <ul class="todo-list">
+      @for (todo of todos(); track todo.id) {
+        <li class="todo-row" [class.is-complete]="todo.completedAt">
+          <button class="todo-toggle" type="button" [attr.aria-label]="todo.completedAt ? 'Mark ' + todo.title + ' active' : 'Complete ' + todo.title" [attr.aria-pressed]="!!todo.completedAt" (click)="todoToggled.emit(todo.id)">
+            @if (todo.completedAt) { <span aria-hidden="true">&#10003;</span> }
+          </button>
+          <span>{{ todo.title }}</span>
+        </li>
+      }
+    </ul>
+  } @else {
+    <div class="empty-state">
+      <span class="empty-mark" aria-hidden="true">&#10022;</span>
+      <p>Your list is clear.<br />Add the next little thing.</p>
+    </div>
+  }
+</section>
