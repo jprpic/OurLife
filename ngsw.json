@@ -1,0 +1,77 @@
+{
+  "configVersion": 1,
+  "timestamp": 1789309576140,
+  "index": "https://jprpic.github.io/OurLife/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://jprpic.github.io/OurLife/favicon.ico",
+        "https://jprpic.github.io/OurLife/index.html",
+        "https://jprpic.github.io/OurLife/main-B7ERSFWT.js",
+        "https://jprpic.github.io/OurLife/manifest.webmanifest",
+        "https://jprpic.github.io/OurLife/styles-TAEOSY3J.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://jprpic.github.io/OurLife/icons/icon-128x128.png",
+        "https://jprpic.github.io/OurLife/icons/icon-144x144.png",
+        "https://jprpic.github.io/OurLife/icons/icon-152x152.png",
+        "https://jprpic.github.io/OurLife/icons/icon-192x192.png",
+        "https://jprpic.github.io/OurLife/icons/icon-384x384.png",
+        "https://jprpic.github.io/OurLife/icons/icon-512x512.png",
+        "https://jprpic.github.io/OurLife/icons/icon-72x72.png",
+        "https://jprpic.github.io/OurLife/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://jprpic.github.io/OurLife/favicon.ico": "ae939a96d8b479988ed781234838a5f64385431d",
+    "https://jprpic.github.io/OurLife/icons/icon-128x128.png": "70d5477977291ec89d5df9943749590905496f3e",
+    "https://jprpic.github.io/OurLife/icons/icon-144x144.png": "a355de8990b1943f0bbc9455b48d4340d70b07fb",
+    "https://jprpic.github.io/OurLife/icons/icon-152x152.png": "6570130dfba5ef0fe773ec16bb8e8f4b76b3eb97",
+    "https://jprpic.github.io/OurLife/icons/icon-192x192.png": "6562d0fea0b264ae859fb88cdb027a3df17abc7f",
+    "https://jprpic.github.io/OurLife/icons/icon-384x384.png": "21ffbf8d58fc8858e47a41d70ebc0c91c469afd1",
+    "https://jprpic.github.io/OurLife/icons/icon-512x512.png": "2ea3f212a753ee39360ed9e749eb9d45a14323f3",
+    "https://jprpic.github.io/OurLife/icons/icon-72x72.png": "5aa10b21daf378bc002e501375d42b5213dbe056",
+    "https://jprpic.github.io/OurLife/icons/icon-96x96.png": "7737a3e586e0221a5826b0d597543d5473f75a77",
+    "https://jprpic.github.io/OurLife/index.html": "3d85fa9b4d543df665ec601947bd18041d4c62bb",
+    "https://jprpic.github.io/OurLife/main-B7ERSFWT.js": "8766db48f74e44adee399cba889ff3940e27bcd7",
+    "https://jprpic.github.io/OurLife/manifest.webmanifest": "9d3d9d7f23a174760b23308b285c370892b3293c",
+    "https://jprpic.github.io/OurLife/styles-TAEOSY3J.css": "b5851424bc781899515e2d720eb068bf067f7ad5"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
