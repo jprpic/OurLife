@@ -1,6 +1,62 @@
-<section class="placeholder" aria-labelledby="to-buy-heading">
-    <span class="symbol" aria-hidden="true">+</span>
-    <p class="eyebrow">Coming in phase two</p>
-    <h2 id="to-buy-heading">The store drawer is next.</h2>
-    <p>Keep your wants close. We're making room for a shared shopping list.</p>
+<section class="shopping-page" aria-label="To-buy shopping list">
+    <div class="add-bar" aria-label="Add item globally">
+        <input type="text" [value]="draft()" (input)="draft.set($any($event.target).value)" placeholder="Add an item..."
+            aria-label="New shopping item" (keydown.enter)="onGlobalAdd()" />
+
+        <select [value]="categoryDraft()" (change)="updateCategoryDraft($any($event.target).value)"
+            aria-label="Select shopping category">
+            @for (category of shoppingCategories; track category.id) {
+            <option [value]="category.id">{{ category.label }}</option>
+            }
+        </select>
+
+        <button type="button" class="primary-button" (click)="onGlobalAdd()">Add</button>
+    </div>
+
+    <div class="drawer-list">
+        @for (category of visibleCategories(); track category.id) {
+        <section class="drawer" [class.is-open]="isDrawerOpen(category.id)">
+            <button class="drawer-header" type="button" (click)="toggleDrawer(category.id)">
+                <span class="drawer-label">
+                    {{ category.label }}
+                    <small>{{ category.subtitle }}</small>
+                </span>
+                <span class="drawer-count">{{ uncheckedCount(category.id) }}</span>
+            </button>
+
+            @if (isDrawerOpen(category.id)) {
+            <div class="drawer-actions">
+                <button type="button" class="mini-button" (click)="openQuickAdd(category.id)">+ Add</button>
+            </div>
+
+            @if (isQuickAddOpen(category.id)) {
+            <div class="quick-add-row">
+                <input type="text" [value]="getQuickAddValue(category.id)"
+                    (input)="updateQuickAddDraft(category.id, $any($event.target).value)"
+                    [attr.aria-label]="'Add item to ' + category.label" placeholder="Add to {{ category.label }}"
+                    (keydown.enter)="submitQuickAdd(category.id)" />
+                <button type="button" class="secondary-button" (click)="submitQuickAdd(category.id)">Save</button>
+            </div>
+            }
+
+            <ul class="item-list">
+                @for (item of itemsForCategory(category.id); track item.id) {
+                <li class="item-row" [class.is-checked]="item.checked">
+                    <label class="checkbox-wrap">
+                        <input type="checkbox" [checked]="item.checked" (change)="toggleItem(item.id)"
+                            [attr.aria-label]="'Check ' + item.title" />
+                    </label>
+                    <span class="item-title">{{ item.title }}</span>
+                </li>
+                }
+            </ul>
+            }
+        </section>
+        }
+    </div>
+
+    <button type="button" class="clear-button" (click)="clearChecked()"
+        [disabled]="!items().some(item => item.checked)">
+        Clear Checked Items
+    </button>
 </section>

@@ -19,16 +19,9 @@
 
 .app-header {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-}
-
-.app-kicker {
-    margin: 0 0 3px;
-    color: var(--accent);
-    font: 700 .72rem/1.2 Arial, sans-serif;
-    letter-spacing: .14em;
-    text-transform: uppercase;
+    gap: 12px;
 }
 
 h1 {
