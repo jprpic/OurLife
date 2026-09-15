@@ -3,7 +3,7 @@ OurLife PWA Specification (Phase 2: To-Buy)
 Phase 2 introduces the To-Buy shopping system to the OurLife PWA. The feature provides store/type-categorized accordion drawers, dual quick-add workflows, persistent in-cart item checking for friction-free in-store shopping, and a floating global bulk-clear action to clean up checked items upon checkout.
 
 2. Predefined Categories (Drawers)
-The app maintains five predefined shopping categories:
+The app maintains six predefined shopping categories:
 
 Groceries (Supermarket)
 
@@ -11,9 +11,13 @@ Hygiene (DM / Müller)
 
 Hardware (Home improvement / DIY)
 
+Household (Jysk / Ikea / Tedi)
+
 Car (Auto supplies)
 
 Online (E-commerce / Deliveries)
+
+Category selection is always made by the user. The app does not automatically classify an item based on its title or the shop where it is purchased.
 
 3. Data Requirements
 Shopping Item Structure
@@ -21,7 +25,7 @@ id: Unique string identifier.
 
 title: Name of the item to buy.
 
-categoryId: Identifier linking the item to one of the 5 predefined categories.
+ categoryId: Identifier linking the item to one of the 6 predefined categories.
 
 checked: Boolean representing whether the item is currently in the shopping cart.
 

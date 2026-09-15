@@ -1,4 +1,4 @@
-export type ShoppingCategoryId = 'groceries' | 'hygiene' | 'hardware' | 'car' | 'online';
+export type ShoppingCategoryId = 'groceries' | 'hygiene' | 'hardware' | 'household' | 'car' | 'online';
 
 export interface ShoppingItem {
     id: string;
@@ -18,6 +18,7 @@ export const shoppingCategories: ShoppingCategory[] = [
     { id: 'groceries', label: 'Groceries', subtitle: 'Supermarket' },
     { id: 'hygiene', label: 'Hygiene', subtitle: 'DM / Müller' },
     { id: 'hardware', label: 'Hardware', subtitle: 'Home improvement / DIY' },
+    { id: 'household', label: 'Household', subtitle: 'Jysk / Ikea / Tedi' },
     { id: 'car', label: 'Car', subtitle: 'Auto supplies' },
     { id: 'online', label: 'Online', subtitle: 'E-commerce / Deliveries' },
 ];

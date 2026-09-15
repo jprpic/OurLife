@@ -19,4 +19,11 @@ describe('ToBuyPageComponent', () => {
         expect(text).toContain('Hygiene');
         expect(text).toContain('Hardware');
     });
+
+    it('should include the household category in the global category picker', () => {
+        const categoryPicker = fixture.nativeElement.querySelector('select') as HTMLSelectElement;
+        const householdOption = Array.from(categoryPicker.options).find((option) => option.value === 'household');
+
+        expect(householdOption?.textContent).toContain('Household');
+    });
 });
