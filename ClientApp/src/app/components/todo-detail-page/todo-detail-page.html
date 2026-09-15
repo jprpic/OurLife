@@ -1,0 +1,38 @@
+<section class="detail-shell" aria-labelledby="todo-detail-title">
+    @if (todo(); as currentTodo) {
+    <header class="detail-header">
+        <button class="back-button" type="button" (click)="router.navigateByUrl('/todo')">← Back</button>
+        <button class="delete-button" type="button" (click)="removeTodo()">Remove</button>
+    </header>
+
+    <div class="detail-card">
+        <div class="checkbox-row">
+            <button class="todo-toggle" type="button" [attr.aria-pressed]="!!currentTodo.completedAt"
+                [attr.aria-label]="currentTodo.completedAt ? 'Mark ' + currentTodo.title + ' active' : 'Complete ' + currentTodo.title"
+                (click)="toggleComplete()">
+                @if (currentTodo.completedAt) { <span aria-hidden="true">✓</span> }
+            </button>
+            <label class="sr-only" for="todo-detail-title">Task title</label>
+            <input id="todo-detail-title" type="text" [value]="currentTodo.title"
+                (input)="updateTitle($any($event.target).value)" />
+        </div>
+
+        <div class="field-group">
+            <label for="todo-note">Note</label>
+            <textarea id="todo-note" rows="4" [value]="note()" (input)="updateNote($any($event.target).value)"
+                placeholder="Optional note for this task..."></textarea>
+        </div>
+
+        <div class="meta-row">
+            <span>Created</span>
+            <time>{{ currentTodo.createdAt | date:'mediumDate' }}</time>
+        </div>
+
+        <button class="save-button" type="button" (click)="save()" [disabled]="isSaving()">
+            {{ isSaving() ? 'Saving...' : 'Save changes' }}
+        </button>
+    </div>
+    } @else {
+    <p class="empty-state">Todo not found.</p>
+    }
+</section>

@@ -53,6 +53,12 @@ h2 {
     background: var(--surface);
     font-size: 1.08rem;
     box-shadow: 0 5px 14px #17211b08;
+    cursor: pointer;
+}
+
+.todo-row:focus-visible {
+    outline: 3px solid #d95d3966;
+    outline-offset: 2px;
 }
 
 .todo-toggle {
@@ -75,12 +81,20 @@ h2 {
 
 .is-complete {
     color: #718078;
+}
+
+.is-complete > span {
     text-decoration: line-through;
 }
 
 .is-complete .todo-toggle {
     border-color: var(--accent);
     background: var(--accent);
+    text-decoration: none;
+}
+
+.is-complete .todo-toggle span {
+    text-decoration: none;
 }
 
 .empty-state {

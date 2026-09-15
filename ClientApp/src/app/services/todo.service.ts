@@ -18,10 +18,22 @@ export class TodoService {
         const todo: TodoItem = {
             id: crypto.randomUUID(),
             title,
+            note: null,
             createdAt: new Date().toISOString(),
             completedAt: null,
         };
         return this.saveTodos([todo, ...todos]);
+    }
+
+    async updateTodo(todo: TodoItem): Promise<TodoItem[]> {
+        const todos = await this.getTodos();
+        const updated = todos.map((item) => item.id === todo.id ? { ...item, ...todo } : item);
+        return this.saveTodos(updated);
+    }
+
+    async deleteTodo(id: string): Promise<TodoItem[]> {
+        const todos = await this.getTodos();
+        return this.saveTodos(todos.filter((todo) => todo.id !== id));
     }
 
     async toggleTodo(id: string): Promise<TodoItem[]> {

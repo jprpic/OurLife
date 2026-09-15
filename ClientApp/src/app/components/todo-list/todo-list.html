@@ -10,10 +10,12 @@
     @if (todos().length) {
     <ul class="todo-list">
         @for (todo of todos(); track todo.id) {
-        <li class="todo-row" [class.is-complete]="todo.completedAt">
+        <li class="todo-row" [class.is-complete]="todo.completedAt" tabindex="0" role="button"
+            [attr.aria-label]="'Open details for ' + todo.title" (click)="activateTodo(todo.id)"
+            (keydown.enter)="activateTodo(todo.id)" (keydown.space)="activateTodo(todo.id)">
             <button class="todo-toggle" type="button"
                 [attr.aria-label]="todo.completedAt ? 'Mark ' + todo.title + ' active' : 'Complete ' + todo.title"
-                [attr.aria-pressed]="!!todo.completedAt" (click)="todoToggled.emit(todo.id)">
+                [attr.aria-pressed]="!!todo.completedAt" (click)="toggleTodo(todo.id, $event)">
                 @if (todo.completedAt) { <span aria-hidden="true">&#10003;</span> }
             </button>
             <span>{{ todo.title }}</span>

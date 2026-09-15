@@ -1,5 +1,6 @@
 import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 import { interval } from 'rxjs';
 
 import { TodoItem } from '../../models/todo.model';
@@ -27,6 +28,7 @@ export function isTodoActive(todo: Pick<TodoItem, 'completedAt'>, now: number = 
 })
 export class TodoPageComponent {
     private readonly todoService = inject(TodoService);
+    private readonly router = inject(Router);
     private readonly destroyRef = inject(DestroyRef);
     protected readonly todos = signal<TodoItem[]>([]);
     protected readonly draft = signal('');
@@ -53,6 +55,10 @@ export class TodoPageComponent {
 
     protected async toggleTodo(id: string): Promise<void> {
         this.todos.set(await this.todoService.toggleTodo(id));
+    }
+
+    protected openTodo(id: string): void {
+        this.router.navigateByUrl(`/todo/${id}`);
     }
 
     protected loadMore(): void { this.archivePageSize.update((size) => size + 10); }

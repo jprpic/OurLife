@@ -1,0 +1,154 @@
+:host {
+    display: block;
+}
+
+.detail-shell {
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.back-button,
+.delete-button,
+.save-button,
+.todo-toggle {
+    cursor: pointer;
+}
+
+.back-button,
+.delete-button {
+    border: 1px solid #dfe6dd;
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink);
+    font: 700 .8rem Arial, sans-serif;
+    padding: 8px 14px;
+}
+
+.delete-button {
+    color: #b34a3f;
+}
+
+.detail-card {
+    display: grid;
+    gap: 22px;
+    padding: 22px;
+    border: 1px solid #dfe6dd;
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: 0 10px 22px #17211b0d;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.todo-toggle {
+    display: grid;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    border: 2px solid #9aa99d;
+    border-radius: 50%;
+    color: #fff;
+    background: transparent;
+    font-size: 1.1rem;
+}
+
+.todo-toggle[aria-pressed='true'] {
+    border-color: var(--accent);
+    background: var(--accent);
+}
+
+#todo-detail-title,
+#todo-note {
+    width: 100%;
+    border: 1px solid #dfe6dd;
+    border-radius: 12px;
+    background: #fff;
+    color: var(--ink);
+    font: 1rem/1.4 Arial, sans-serif;
+    padding: 12px 14px;
+}
+
+#todo-detail-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.field-group {
+    display: grid;
+    gap: 8px;
+}
+
+.field-group label,
+.meta-row {
+    color: var(--muted);
+    font: 700 .75rem/1.2 Arial, sans-serif;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+#todo-note {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6px;
+    letter-spacing: .08em;
+}
+
+.meta-row time {
+    color: var(--ink);
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.save-button {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: 12px;
+    padding: 14px 16px;
+    background: var(--accent);
+    color: #fff;
+    font: 700 1rem Arial, sans-serif;
+}
+
+.save-button:disabled {
+    opacity: .7;
+    cursor: progress;
+}
+
+.empty-state {
+    margin: 0;
+    padding: 30px 20px;
+    color: var(--muted);
+    text-align: center;
+    border: 1px dashed #cbd6cc;
+    border-radius: 15px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
