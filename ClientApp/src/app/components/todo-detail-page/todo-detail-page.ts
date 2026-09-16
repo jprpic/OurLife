@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { TodoItem } from '../../models/todo.model';
 import { TodoService } from '../../services/todo.service';
+import { isTodoDone, toggleTodoCompletion } from '../todo-page/todo-page';
 
 @Component({
     selector: 'app-todo-detail-page',
@@ -37,6 +38,10 @@ export class TodoDetailPageComponent {
 
     protected readonly isComplete = computed(() => !!this.todo()?.completedAt);
 
+    protected isTodoDone(todo: Pick<TodoItem, 'completedAt'> | null): boolean {
+        return !!todo && isTodoDone(todo);
+    }
+
     protected updateTitle(value: string): void {
         const current = this.todo();
         if (!current) return;
@@ -69,7 +74,16 @@ export class TodoDetailPageComponent {
         const current = this.todo();
         if (!current) return;
 
-        const updated = { ...current, completedAt: current.completedAt ? null : new Date().toISOString() };
+        const updated = toggleTodoCompletion(current, !current.completedAt);
+        this.todo.set(updated);
+        await this.todoService.updateTodo(updated);
+    }
+
+    protected async toggleFavorite(): Promise<void> {
+        const current = this.todo();
+        if (!current || current.completedAt) return;
+
+        const updated = { ...current, favorite: !current.favorite };
         this.todo.set(updated);
         await this.todoService.updateTodo(updated);
     }

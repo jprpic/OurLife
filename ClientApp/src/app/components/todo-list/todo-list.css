@@ -61,7 +61,8 @@ h2 {
     outline-offset: 2px;
 }
 
-.todo-toggle {
+.todo-toggle,
+.todo-favorite {
     display: grid;
     width: 23px;
     height: 23px;
@@ -74,9 +75,20 @@ h2 {
     cursor: pointer;
 }
 
-.todo-toggle:focus-visible {
+.todo-toggle:focus-visible,
+.todo-favorite:focus-visible {
     outline: 3px solid #d95d3966;
     outline-offset: 2px;
+}
+
+.todo-favorite {
+    border-color: #f0bd59;
+    color: #f0bd59;
+    background: #fff7e1;
+}
+
+.todo-favorite[aria-pressed='true'] {
+    background: #fbe5a6;
 }
 
 .is-complete {

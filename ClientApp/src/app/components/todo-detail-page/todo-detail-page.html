@@ -12,6 +12,14 @@
                 (click)="toggleComplete()">
                 @if (currentTodo.completedAt) { <span aria-hidden="true">✓</span> }
             </button>
+            @if (!currentTodo.completedAt || !isTodoDone(currentTodo)) {
+            <button class="favorite-toggle" type="button"
+                [attr.aria-label]="currentTodo.favorite ? 'Remove favorite from ' + currentTodo.title : 'Mark ' + currentTodo.title + ' favorite'"
+                [attr.aria-pressed]="currentTodo.favorite" (click)="toggleFavorite()"
+                [disabled]="!!currentTodo.completedAt">
+                <span aria-hidden="true">{{ currentTodo.favorite ? '&#9733;' : '&#9734;' }}</span>
+            </button>
+            }
             <label class="sr-only" for="todo-detail-title">Task title</label>
             <input id="todo-detail-title" type="text" [value]="currentTodo.title"
                 (input)="updateTitle($any($event.target).value)" />

@@ -1,4 +1,4 @@
-import { Component, computed, ElementRef, inject, QueryList, signal, ViewChildren } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 
 import { ShoppingCategoryId, shoppingCategories, ShoppingItem } from '../../models/shopping.model';
 import { ToBuyService } from '../../services/to-buy.service';
@@ -11,14 +11,11 @@ import { ToBuyService } from '../../services/to-buy.service';
 })
 export class ToBuyPageComponent {
     private readonly toBuyService = inject(ToBuyService);
-    @ViewChildren('quickAddInput') private readonly quickAddInputs!: QueryList<ElementRef<HTMLInputElement>>;
     protected readonly shoppingCategories = shoppingCategories;
     protected readonly items = signal<ShoppingItem[]>([]);
     protected readonly draft = signal('');
     protected readonly categoryDraft = signal<ShoppingCategoryId>('groceries');
     protected readonly openDrawers = signal<Record<string, boolean>>({ groceries: true });
-    protected readonly quickAddOpen = signal<Record<string, boolean>>({});
-    protected readonly quickAddDraft = signal<Record<string, string>>({});
 
     protected readonly visibleCategories = computed(() =>
         shoppingCategories.filter((category) =>
@@ -44,10 +41,6 @@ export class ToBuyPageComponent {
         return !!this.openDrawers()[categoryId];
     }
 
-    protected isQuickAddOpen(categoryId: ShoppingCategoryId): boolean {
-        return !!this.quickAddOpen()[categoryId];
-    }
-
     protected onGlobalAdd(): void {
         const value = this.draft().trim();
         if (!value) return;
@@ -70,41 +63,6 @@ export class ToBuyPageComponent {
         }));
     }
 
-    protected toggleQuickAdd(categoryId: ShoppingCategoryId): void {
-        const isOpen = this.isQuickAddOpen(categoryId);
-        this.quickAddOpen.update((current) => ({ ...current, [categoryId]: !isOpen }));
-
-        if (isOpen) {
-            this.quickAddDraft.update((current) => ({ ...current, [categoryId]: '' }));
-            return;
-        }
-
-        this.openDrawers.update((current) => ({ ...current, [categoryId]: true }));
-        this.focusQuickAddInput(categoryId);
-    }
-
-    protected updateQuickAddDraft(categoryId: ShoppingCategoryId, value: string): void {
-        this.quickAddDraft.update((current) => ({
-            ...current,
-            [categoryId]: value,
-        }));
-    }
-
-    protected getQuickAddValue(categoryId: ShoppingCategoryId): string {
-        return this.quickAddDraft()[categoryId] || '';
-    }
-
-    protected submitQuickAdd(categoryId: ShoppingCategoryId): void {
-        const value = (this.quickAddDraft()[categoryId] ?? '').trim();
-        if (!value) return;
-
-        void this.toBuyService.addItem(value, categoryId).then((items) => {
-            this.items.set(items);
-            this.quickAddDraft.update((current) => ({ ...current, [categoryId]: '' }));
-            this.focusQuickAddInput(categoryId);
-        });
-    }
-
     protected async toggleItem(id: string): Promise<void> {
         this.items.set(await this.toBuyService.toggleChecked(id));
     }
@@ -115,14 +73,5 @@ export class ToBuyPageComponent {
 
     private async loadItems(): Promise<void> {
         this.items.set(await this.toBuyService.getItems());
-    }
-
-    private focusQuickAddInput(categoryId: ShoppingCategoryId): void {
-        queueMicrotask(() => {
-            const input = this.quickAddInputs
-                .toArray()
-                .find((candidate) => candidate.nativeElement.dataset['categoryId'] === categoryId);
-            input?.nativeElement.focus();
-        });
     }
 }

@@ -12,8 +12,13 @@ export class TodoArchiveComponent {
     readonly todos = input.required<TodoItem[]>();
     readonly visibleCount = input.required<number>();
     readonly loadMore = output<void>();
+    readonly todoSelected = output<string>();
 
     protected formatDate(value: string): string {
         return new Date(value).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    }
+
+    protected selectTodo(id: string): void {
+        this.todoSelected.emit(id);
     }
 }

@@ -10,7 +10,11 @@
     @if (todos().length) {
     <ul class="archive-list">
         @for (todo of todos().slice(0, visibleCount()); track todo.id) {
-        <li><span>{{ todo.title }}</span><time>{{ formatDate(todo.completedAt!) }}</time></li>
+        <li class="archive-row" tabindex="0" role="button" (click)="selectTodo(todo.id)"
+            (keydown.enter)="selectTodo(todo.id)" (keydown.space)="selectTodo(todo.id)">
+            <span>{{ todo.title }}</span>
+            <time>{{ formatDate(todo.completedAt!) }}</time>
+        </li>
         }
     </ul>
     @if (visibleCount() < todos().length) { <button class="load-more" type="button" (click)="loadMore.emit()">Load

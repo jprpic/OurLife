@@ -25,23 +25,6 @@
             </button>
 
             @if (isDrawerOpen(category.id)) {
-            <div class="drawer-actions">
-                <button type="button" class="mini-button" (click)="toggleQuickAdd(category.id)">
-                    {{ isQuickAddOpen(category.id) ? 'Cancel' : '+ Add' }}
-                </button>
-            </div>
-
-            @if (isQuickAddOpen(category.id)) {
-            <div class="quick-add-row">
-                <input #quickAddInput type="text" [attr.data-category-id]="category.id"
-                    [value]="getQuickAddValue(category.id)"
-                    (input)="updateQuickAddDraft(category.id, $any($event.target).value)"
-                    [attr.aria-label]="'Add item to ' + category.label" placeholder="Add to {{ category.label }}"
-                    (keydown.enter)="submitQuickAdd(category.id)" />
-                <button type="button" class="secondary-button" (click)="submitQuickAdd(category.id)">Save</button>
-            </div>
-            }
-
             <ul class="item-list">
                 @for (item of itemsForCategory(category.id); track item.id) {
                 <li [class.is-checked]="item.checked">

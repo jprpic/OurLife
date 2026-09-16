@@ -18,6 +18,11 @@
                 [attr.aria-pressed]="!!todo.completedAt" (click)="toggleTodo(todo.id, $event)">
                 @if (todo.completedAt) { <span aria-hidden="true">&#10003;</span> }
             </button>
+            <button class="todo-favorite" type="button"
+                [attr.aria-label]="todo.favorite ? 'Remove favorite from ' + todo.title : 'Mark ' + todo.title + ' favorite'"
+                [attr.aria-pressed]="todo.favorite" (click)="toggleFavorite(todo.id, $event)">
+                <span aria-hidden="true">{{ todo.favorite ? '&#9733;' : '&#9734;' }}</span>
+            </button>
             <span>{{ todo.title }}</span>
         </li>
         }

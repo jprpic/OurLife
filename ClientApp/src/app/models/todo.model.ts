@@ -4,4 +4,5 @@ export interface TodoItem {
     note?: string | null;
     createdAt: string;
     completedAt: string | null;
+    favorite: boolean;
 }

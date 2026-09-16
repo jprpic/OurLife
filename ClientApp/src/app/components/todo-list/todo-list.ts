@@ -11,6 +11,7 @@ import { TodoItem } from '../../models/todo.model';
 export class TodoListComponent {
     readonly todos = input.required<TodoItem[]>();
     readonly todoToggled = output<string>();
+    readonly todoFavoriteToggled = output<string>();
     readonly todoSelected = output<string>();
 
     protected activateTodo(id: string): void {
@@ -20,5 +21,10 @@ export class TodoListComponent {
     protected toggleTodo(id: string, event?: Event): void {
         event?.stopPropagation();
         this.todoToggled.emit(id);
+    }
+
+    protected toggleFavorite(id: string, event?: Event): void {
+        event?.stopPropagation();
+        this.todoFavoriteToggled.emit(id);
     }
 }

@@ -21,6 +21,7 @@ export class TodoService {
             note: null,
             createdAt: new Date().toISOString(),
             completedAt: null,
+            favorite: false,
         };
         return this.saveTodos([todo, ...todos]);
     }
@@ -38,8 +39,31 @@ export class TodoService {
 
     async toggleTodo(id: string): Promise<TodoItem[]> {
         const todos = await this.getTodos();
+        const updated = todos.map((todo) => {
+            if (todo.id !== id) return todo;
+
+            const isCompleting = !todo.completedAt;
+            if (isCompleting) {
+                return {
+                    ...todo,
+                    completedAt: new Date().toISOString(),
+                };
+            }
+
+            const wasDone = !!todo.completedAt && (Date.now() - new Date(todo.completedAt).getTime()) >= 5 * 60 * 1000;
+            return {
+                ...todo,
+                completedAt: null,
+                favorite: wasDone ? false : todo.favorite,
+            };
+        });
+        return this.saveTodos(updated);
+    }
+
+    async toggleTodoFavorite(id: string): Promise<TodoItem[]> {
+        const todos = await this.getTodos();
         const updated = todos.map((todo) => todo.id === id
-            ? { ...todo, completedAt: todo.completedAt ? null : new Date().toISOString() }
+            ? { ...todo, favorite: !todo.favorite }
             : todo);
         return this.saveTodos(updated);
     }

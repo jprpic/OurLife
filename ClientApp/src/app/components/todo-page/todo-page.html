@@ -6,7 +6,7 @@
     </form>
 
     <app-todo-list [todos]="activeTodos()" (todoToggled)="toggleTodo($event)"
-        (todoSelected)="openTodo($event)"></app-todo-list>
-    <app-todo-archive [todos]="archivedTodos()" [visibleCount]="archivePageSize()"
+        (todoFavoriteToggled)="toggleTodoFavorite($event)" (todoSelected)="openTodo($event)"></app-todo-list>
+    <app-todo-archive [todos]="archivedTodos()" [visibleCount]="archivePageSize()" (todoSelected)="openTodo($event)"
         (loadMore)="loadMore()"></app-todo-archive>
 </section>
